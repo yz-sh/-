@@ -59,7 +59,7 @@ public class BuyerProductController {
             productVO.setCategoryName(productCategory.getCategoryName());
             productVO.setCategoryType(productCategory.getCategoryType());
 
-            //将商品信息放入到productVO的food中
+            //将商品信息放入到productVO的foods中
             List<ProductInfoVO> productInfoVOList = new ArrayList<>();
             for (ProductInfo productInfo : productInfoList){
                 if(productInfo.getCategoryType().equals(productCategory.getCategoryType())){

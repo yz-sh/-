@@ -13,6 +13,7 @@ import com.imooc.exception.SellException;
 import com.imooc.repository.OrderDetailRepository;
 import com.imooc.repository.OrderMasterRepository;
 import com.imooc.service.OrderService;
+import com.imooc.service.PayService;
 import com.imooc.service.ProductService;
 import com.imooc.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -49,6 +50,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderMasterRepository orderMasterRepository;
 
+    @Autowired
+    private PayService payService;
+
     //前端传来的订单数据，通过service层调用dao层，往数据库里面进行改变
     @Override
     @Transactional
@@ -78,8 +82,8 @@ public class OrderServiceImpl implements OrderService {
 
         //3.写入订单数据库(orderMaster和orderDetail)
         OrderMaster orderMaster = new OrderMaster();
+        orderDto.setOrderId(orderId);
         BeanUtils.copyProperties(orderDto,orderMaster);
-        orderMaster.setOrderId(orderId);
         orderMaster.setOrderAmount(orderAmount);
         orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
         orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
@@ -154,7 +158,8 @@ public class OrderServiceImpl implements OrderService {
 
         //如果已支付，需要退款
         if (orderDto.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())){
-            //TODO
+
+            payService.refund(orderDto);
         }
 
         return orderDto;
