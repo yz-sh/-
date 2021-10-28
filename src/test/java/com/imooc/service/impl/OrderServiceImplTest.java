@@ -98,4 +98,12 @@ public class OrderServiceImplTest {
         OrderDto result = orderService.paid(orderDto);
         Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(),result.getPayStatus());
     }
+
+    @Test
+    public void list(){
+        PageRequest request = new PageRequest(0, 2);
+        Page<OrderDto> orderDtoPage = orderService.findList(request);
+        Assert.assertNotEquals(0,orderDtoPage.getTotalElements());
+
+    }
 }
