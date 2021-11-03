@@ -9,7 +9,7 @@ import sun.print.DialogOwner;
  * 2021/10/5 14:29
  */
 @Getter
-public enum ProductStatusEnum {
+public enum ProductStatusEnum implements CodeEnum{
     UP(0,"在架"),
     DOWN(1,"下架")
     ;

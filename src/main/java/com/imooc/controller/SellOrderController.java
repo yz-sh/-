@@ -59,7 +59,7 @@ public class SellOrderController {
             OrderDto orderDto = orderService.findOne(orderId);
             orderService.cancel(orderDto);
         }catch (SellException e){
-            log.error("【买家端取消订单】发生异常{}",e);
+            log.error("【卖家端取消订单】发生异常{}",e);
             map.put("msg", e.getMessage());
             map.put("url","/sell/seller/order/list");
 
@@ -83,7 +83,7 @@ public class SellOrderController {
         try{
            orderDto = orderService.findOne(orderId);
         }catch (SellException e){
-            log.error("【买家端查询订单详情】发生异常{}",e);
+            log.error("【卖家端查询订单详情】发生异常{}",e);
             map.put("msg",e.getMessage());
             map.put("url","/sell/seller/order/list");
             return new ModelAndView("common/error",map);
@@ -105,7 +105,7 @@ public class SellOrderController {
             OrderDto orderDto = orderService.findOne(orderId);
             orderService.finish(orderDto);
         }catch (SellException e){
-            log.error("【买家端完结订单】发生异常{}",e);
+            log.error("【卖家端完结订单】发生异常{}",e);
             map.put("msg", e.getMessage());
             map.put("url","/sell/seller/order/list");
             return new ModelAndView("common/error",map);
