@@ -14,8 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
- * 获取微信的appid和appsecret
- *
+ * 获取微信的appid和appsecret(公众号已有的信息)
  * Created by keke
  * 2021/10/23 16:00
  */

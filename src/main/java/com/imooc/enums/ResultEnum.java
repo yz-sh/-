@@ -42,11 +42,15 @@ public enum ResultEnum {
 
     ORDER_FINISH_SUCCESS(23,"订单完结成功"),
 
-    PRODUCT_STATUS_ERROR(23,"商品状态异常"),
+    PRODUCT_STATUS_ERROR(24,"商品状态异常"),
 
-    PRODUCT_OFF_SALE(24,"订单下架成功"),
+    PRODUCT_OFF_SALE(25,"订单下架成功"),
 
-    PRODUCT_ON_SALE(25,"订单上架成功"),
+    PRODUCT_ON_SALE(26,"订单上架成功"),
+
+    LOGIN_FAIL(27,"登录失败，登录信息不正确"),
+
+    LOGOUT_SUCCESS(28,"登出成功"),
     ;
 
     private Integer code;//异常码

@@ -8,6 +8,9 @@ spring:
     show-sql: true
   jackson:
     default-property-inclusion: non_null
+  redis:
+    host: 172.20.18.18
+    port: 6379
 server:
   context-path: /sell
 #logging:
@@ -22,3 +25,8 @@ wechat:
   mchKey: 06C56A89949D617xxxxxxxxxxx
   keyPath: /var/weixin_cert/h5.p12
   notifyUrl: http://keke123.natapp1.cc/sell/pay/notify
+
+projectUrl:
+  wechatMpAuthorize: http://keke123.natapp1.cc
+  wechatOpenAuthorize: http://keke123.natapp1.cc
+  sell: http://keke123.natapp1.cc
