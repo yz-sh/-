@@ -15,9 +15,9 @@ import com.imooc.repository.OrderMasterRepository;
 import com.imooc.service.OrderService;
 import com.imooc.service.PayService;
 import com.imooc.service.ProductService;
+import com.imooc.service.PushMessageService;
 import com.imooc.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,7 +29,6 @@ import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,6 +51,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PayService payService;
+
+    @Autowired
+    private PushMessageService pushMessageService;
 
     //前端传来的订单数据，通过service层调用dao层，往数据库里面进行改变
     @Override
@@ -182,6 +184,10 @@ public class OrderServiceImpl implements OrderService {
             log.error("【取消订单】更新失败,orderMaster={}",orderMaster);
             throw  new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
+
+        //推送微信消息
+        pushMessageService.orderStatus(orderDto);
+
         return orderDto;
     }
 
@@ -221,4 +227,5 @@ public class OrderServiceImpl implements OrderService {
 
         return orderDtoPage;
     }
+
 }
